@@ -1,5 +1,4 @@
 import { generateSidebar } from './sidebarGenerator.js'
-import sidebarReloadPlugin from './sidebarReloadPlugin.js'
 
 /**
  * Generate VitePress configuration from user config and docs path
@@ -27,14 +26,39 @@ export function generateVitePressConfig(userConfig, docsPath, useSrcDir = true) 
       } : undefined
     },
     vite: {
-      plugins: [sidebarReloadPlugin(docsPath)],
       server: {
         watch: {
+          // Watch the actual docs directory when using srcDir
+          ignored: ['**/node_modules/**', '**/.vitepress/**', '**/dist/**'],
           usePolling: false
+        },
+        fs: {
+          // Allow serving files from the docs directory
+          allow: [docsPath]
         }
       },
       optimizeDeps: {
         exclude: ['vitepress']
+      },
+      vue: {
+        template: {
+          compilerOptions: {
+            // Show Vue template errors in overlay instead of breaking
+            onError: (err) => {
+              console.error('Vue template error:', err)
+            }
+          }
+        }
+      }
+    },
+    vue: {
+      template: {
+        compilerOptions: {
+          // More permissive - warn instead of error
+          onWarn: (warning) => {
+            console.warn('Vue warning:', warning)
+          }
+        }
       }
     }
   }

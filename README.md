@@ -16,6 +16,13 @@ Build a static site for deployment:
 npx nlddoc build ./docs ./output
 ```
 
+Customize with a config file:
+
+```bash
+npx nlddoc init ./docs
+# Edit .nlddoc, then serve or build
+```
+
 ## Features
 
 - 🚀 **Zero Setup** - No installation, no configuration required
@@ -43,6 +50,34 @@ nlddoc serve ./docs
 ```
 
 ## Commands
+
+### init
+
+Create a `.nlddoc` configuration file with default settings in your documentation directory.
+
+```bash
+nlddoc init [path]
+```
+
+**Arguments:**
+- `path` - Directory to create config in (default: current directory)
+
+**Options:**
+- `-f, --force` - Overwrite existing config without confirmation
+
+**Examples:**
+```bash
+# Create config in current directory
+nlddoc init
+
+# Create config in specific directory
+nlddoc init ./docs
+
+# Overwrite existing config
+nlddoc init --force
+```
+
+The generated `.nlddoc` file includes all available options with sensible defaults. Edit it to customize your documentation site.
 
 ### serve
 
@@ -108,7 +143,13 @@ nlddoc build ./docs ./dist --clean
 
 ## Configuration
 
-nlddoc works great with zero configuration, but you can customize it by adding a `.nlddoc` file to your documentation directory.
+nlddoc works great with zero configuration, but you can customize it by creating a `.nlddoc` file in your documentation directory.
+
+**Quick start:**
+```bash
+# Generate a config file with defaults
+nlddoc init
+```
 
 **Example `.nlddoc`:**
 ```json

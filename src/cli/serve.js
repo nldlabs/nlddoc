@@ -3,6 +3,7 @@ import { existsSync, statSync, readdirSync } from 'fs'
 import { spawn } from 'child_process'
 import { loadConfig } from './config.js'
 import { createTempProject, registerCleanupHandlers } from '../utils/tempProject.js'
+import { watchSidebarChanges } from '../utils/sidebarWatcher.js'
 import { info, success, error } from '../utils/logger.js'
 import pc from 'picocolors'
 
@@ -72,76 +73,105 @@ export async function serve(docsPath = '.', options = {}) {
     vitepressArgs.push('--host')
   }
   
-  const vitepress = spawn(vitepressBin, vitepressArgs, {
-    cwd: tempDir,
-    stdio: ['inherit', 'pipe', 'pipe'] // stdin, stdout, stderr - pipe both to capture
-  })
-  
-  // Handle spawn errors
-  vitepress.on('error', (err) => {
-    error(`Failed to start server: ${err.message}`)
-    process.exit(1)
-  })
-  
-  // Filter stderr to remove dependency warnings
+  let vitepress = null
   let hasShownTips = false
   let serverUrls = { local: null, network: null }
   
-  if (vitepress.stderr) {
-    vitepress.stderr.on('data', (data) => {
-      const output = data.toString()
-      // Only show actual errors, not warnings
-      if (output.includes('error') && 
-          !output.includes('Failed to resolve dependency') && 
-          !output.includes('optimizeDeps.include')) {
-        process.stderr.write(data)
-      }
+  const startVitePress = () => {
+    vitepress = spawn(vitepressBin, vitepressArgs, {
+      cwd: tempDir,
+      stdio: ['inherit', 'pipe', 'pipe'] // stdin, stdout, stderr - pipe both to capture
     })
-  }
-  
-  if (vitepress.stdout) {
-    vitepress.stdout.on('data', (data) => {
-      const output = data.toString()
-      
-      // Extract URLs from VitePress output
-      const localMatch = output.match(/Local:\s+(http:\/\/[^\s]+)/)
-      const networkMatch = output.match(/Network:\s+(http:\/\/[^\s]+)/)
-      
-      if (localMatch) serverUrls.local = localMatch[1]
-      if (networkMatch) serverUrls.network = networkMatch[1]
-      
-      // Show our custom ready message when VitePress is ready
-      if (!hasShownTips && output.includes('Local:')) {
-        hasShownTips = true
-        process.stdout.write('\r\x1b[K') // Clear "Starting server..." line
-        
-        console.log(pc.green('✓') + pc.bold(' Server ready!'))
-        console.log()
-        console.log(pc.dim('─'.repeat(60)))
-        console.log()
-        console.log(`  ${pc.green('●')} ${pc.bold('Local:   ')} ${pc.cyan(serverUrls.local || 'http://localhost:5173')}`)
-        if (serverUrls.network) {
-          console.log(`  ${pc.dim('●')} ${pc.bold('Network: ')} ${pc.cyan(serverUrls.network)}`)
+    
+    // Handle spawn errors
+    vitepress.on('error', (err) => {
+      error(`Failed to start server: ${err.message}`)
+      process.exit(1)
+    })
+    
+    // Filter stderr to remove dependency warnings
+    if (vitepress.stderr) {
+      vitepress.stderr.on('data', (data) => {
+        const output = data.toString()
+        // Only show actual errors, not warnings
+        if (output.includes('error') && 
+            !output.includes('Failed to resolve dependency') && 
+            !output.includes('optimizeDeps.include')) {
+          process.stderr.write(data)
         }
+      })
+    }
+    
+    if (vitepress.stdout) {
+      vitepress.stdout.on('data', (data) => {
+        const output = data.toString()
+        
+        // Extract URLs from VitePress output
+        const localMatch = output.match(/Local:\s+(http:\/\/[^\s]+)/)
+        const networkMatch = output.match(/Network:\s+(http:\/\/[^\s]+)/)
+        
+        if (localMatch) serverUrls.local = localMatch[1]
+        if (networkMatch) serverUrls.network = networkMatch[1]
+        
+        // Show our custom ready message when VitePress is ready
+        if (!hasShownTips && output.includes('Local:')) {
+          hasShownTips = true
+          process.stdout.write('\r\x1b[K') // Clear "Starting server..." line
+          
+          console.log(pc.green('✓') + pc.bold(' Server ready!'))
+          console.log()
+          console.log(pc.dim('─'.repeat(60)))
+          console.log()
+          console.log(`  ${pc.green('●')} ${pc.bold('Local:   ')} ${pc.cyan(serverUrls.local || 'http://localhost:5173')}`)
+          if (serverUrls.network) {
+            console.log(`  ${pc.dim('●')} ${pc.bold('Network: ')} ${pc.cyan(serverUrls.network)}`)
+          }
+          console.log()
+          console.log(`  ${pc.dim('Serving')} ${pc.cyan(absoluteDocsPath)}`)
+          console.log(`  ${pc.dim('Press')} ${pc.bold('Ctrl+C')} ${pc.dim('to stop')}`)
+          console.log()
+          console.log(pc.dim('─'.repeat(60)))        
+          console.log()
+        }
+        
+        // Suppress all VitePress stdout output (we've extracted what we need)
+      })
+    }
+    
+    vitepress.on('close', (code) => {
+      if (code !== 0 && code !== null && !isRestarting) {
         console.log()
-        console.log(`  ${pc.dim('Serving')} ${pc.cyan(absoluteDocsPath)}`)
-        console.log(`  ${pc.dim('Press')} ${pc.bold('Ctrl+C')} ${pc.dim('to stop')}`)
-        console.log()
-        console.log(pc.dim('─'.repeat(60)))        
-        console.log()
+        console.log(pc.yellow('⚠ Server stopped with errors'))
+        process.exit(code)
       }
-      
-      // Suppress all VitePress stdout output (we've extracted what we need)
     })
   }
   
-  vitepress.on('close', (code) => {
-    console.log()
-    if (code === 0) {
-      console.log(pc.dim('✓ Server stopped'))
-    } else {
-      console.log(pc.yellow('⚠ Server stopped with errors'))
+  // Start initial server
+  startVitePress()
+  
+  // Watch for sidebar changes and restart VitePress
+  let isRestarting = false
+  const watcher = watchSidebarChanges(absoluteDocsPath, tempDir, () => {
+    isRestarting = true
+    if (vitepress) {
+      vitepress.kill()
+      // Wait a bit for process to die before restarting
+      setTimeout(() => {
+        isRestarting = false
+        startVitePress()
+      }, 500)
     }
-    process.exit(code)
+  })
+  
+  // Cleanup on exit
+  process.on('SIGINT', () => {
+    console.log()
+    console.log(pc.dim('✓ Server stopped'))
+    watcher.close()
+    if (vitepress) {
+      vitepress.kill()
+    }
+    process.exit(0)
   })
 }

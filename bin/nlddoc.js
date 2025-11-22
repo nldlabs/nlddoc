@@ -3,11 +3,18 @@
 import { program } from 'commander'
 import { serve } from '../src/cli/serve.js'
 import { build } from '../src/cli/build.js'
+import { init } from '../src/cli/init.js'
 
 program
   .name('nlddoc')
   .description('Ultralight markdown documentation viewer and static site generator')
   .version('0.1.0')
+
+program
+  .command('init [path]')
+  .description('Create a .nlddoc configuration file with defaults')
+  .option('-f, --force', 'Overwrite existing configuration without confirmation')
+  .action(init)
 
 program
   .command('serve [path]')

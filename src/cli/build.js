@@ -5,6 +5,7 @@ import { loadConfig } from './config.js'
 import { createTempProjectForBuild, cleanupTempProject } from '../utils/tempProject.js'
 import { info, success, error } from '../utils/logger.js'
 import readline from 'readline'
+import pc from 'picocolors'
 
 export async function build(inputPath = '.', outputPath = './dist', options = {}) {
   // Resolve absolute paths
@@ -53,8 +54,16 @@ export async function build(inputPath = '.', outputPath = './dist', options = {}
   // Load configuration
   const config = loadConfig(absoluteInputPath)
   
-  info(`📚 ${config.title}`)
-  info(`Building static site...`)
+  console.log()
+  console.log(pc.cyan(pc.bold('📙 nlddoc build')))
+  console.log()
+  console.log(pc.dim('─'.repeat(60)))
+  console.log()
+  console.log(`${pc.dim('●')} Loading ${pc.cyan(absoluteInputPath)}`)
+  console.log(`${pc.dim('●')} Output ${pc.cyan(absoluteOutputPath)}`)
+  console.log()
+  console.log(pc.dim('─'.repeat(60)))
+  console.log()
   
   // Add base URL if provided
   if (options.base) {
@@ -66,7 +75,7 @@ export async function build(inputPath = '.', outputPath = './dist', options = {}
   
   try {
     // Install dependencies
-    info('Installing dependencies (this may take a minute)...')
+    process.stdout.write(pc.dim('⚙  Setting up...'))
     await new Promise((resolve, reject) => {
       const npm = spawn('npm', ['install'], {
         cwd: tempDir,
@@ -74,22 +83,35 @@ export async function build(inputPath = '.', outputPath = './dist', options = {}
       })
       
       npm.on('close', (code) => {
+        process.stdout.write('\r\x1b[K') // Clear line
         if (code === 0) resolve()
         else reject(new Error(`Setup failed`))
       })
     })
     
     // Run VitePress build
+    process.stdout.write(pc.dim('🔨 Building...'))
     
+    const vitepressBin = resolve(tempDir, 'node_modules/.bin/vitepress')
     await new Promise((resolve, reject) => {
-      const vitepress = spawn('npx', ['vitepress', 'build'], {
+      const vitepress = spawn(vitepressBin, ['build'], {
         cwd: tempDir,
-        stdio: 'inherit'
+        stdio: 'pipe' // Suppress VitePress output
+      })
+      
+      // Only show errors
+      vitepress.stderr.on('data', (data) => {
+        const output = data.toString()
+        if (output.includes('error')) {
+          process.stdout.write('\r\x1b[K') // Clear line first
+          process.stderr.write(data)
+        }
       })
       
       vitepress.on('close', (code) => {
+        process.stdout.write('\r\x1b[K') // Clear line
         if (code === 0) resolve()
-        else reject(new Error(`VitePress build failed with code ${code}`))
+        else reject(new Error(`Build failed with code ${code}`))
       })
     })
     
@@ -102,8 +124,16 @@ export async function build(inputPath = '.', outputPath = './dist', options = {}
     const builtFiles = join(tempDir, '.vitepress/dist')
     cpSync(builtFiles, absoluteOutputPath, { recursive: true })
     
-    success(`✨ Build complete!`)
-    info(`📁 ${absoluteOutputPath}`)
+    console.log(pc.green('✓') + pc.bold(' Build complete!'))
+    console.log()
+    console.log(pc.dim('─'.repeat(60)))
+    console.log()
+    console.log(`  ${pc.green('●')} ${pc.bold('Output:')} ${pc.cyan(absoluteOutputPath)}`)
+    console.log()
+    console.log(pc.dim('  Ready to deploy! Upload the output directory to any static host.'))
+    console.log()
+    console.log(pc.dim('─'.repeat(60)))
+    console.log()
     
   } catch (err) {
     error(`Build failed: ${err.message}`)
