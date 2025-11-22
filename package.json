@@ -1,7 +1,7 @@
 {
   "name": "nlddoc",
   "version": "0.1.0",
-  "description": "Ultralight markdown documentation viewer and static site generator",
+  "description": "Zero-config markdown documentation viewer and static site generator powered by VitePress",
   "type": "module",
   "bin": {
     "nlddoc": "./bin/nlddoc.js"
@@ -23,12 +23,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/nlddoc.git"
+    "url": "https://github.com/nldlabs/nlddoc.git"
   },
   "bugs": {
-    "url": "https://github.com/yourusername/nlddoc/issues"
+    "url": "https://github.com/nldlabs/nlddoc/issues"
   },
-  "homepage": "https://github.com/yourusername/nlddoc#readme",
+  "homepage": "https://github.com/nldlabs/nlddoc#readme",
   "author": "",
   "license": "MIT",
   "dependencies": {
