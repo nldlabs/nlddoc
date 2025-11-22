@@ -66,6 +66,7 @@ export async function build(inputPath = '.', outputPath = './dist', options = {}
   
   try {
     // Install dependencies
+    info('Installing dependencies (this may take a minute)...')
     await new Promise((resolve, reject) => {
       const npm = spawn('npm', ['install'], {
         cwd: tempDir,
