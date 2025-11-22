@@ -11,6 +11,7 @@ export function generateVitePressConfig(userConfig, docsPath, useSrcDir = true) 
   const config = {
     title: userConfig.title,
     description: userConfig.description,
+    base: userConfig.base || '/',
     themeConfig: {
       logo: userConfig.logo,
       nav: [
