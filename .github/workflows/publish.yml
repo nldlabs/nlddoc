@@ -54,13 +54,9 @@ jobs:
       
       - name: Create GitHub Release
         if: steps.version-check.outputs.changed == 'true'
-        uses: actions/create-release@v1
+        run: |
+          gh release create "v${{ steps.version-check.outputs.local }}" \
+            --title "Release v${{ steps.version-check.outputs.local }}" \
+            --notes "See [CHANGELOG.md](https://github.com/${{ github.repository }}/blob/main/CHANGELOG.md) for details."
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: v${{ steps.version-check.outputs.local }}
-          release_name: Release v${{ steps.version-check.outputs.local }}
-          body: |
-            See [CHANGELOG.md](https://github.com/${{ github.repository }}/blob/main/CHANGELOG.md) for details.
-          draft: false
-          prerelease: false
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
