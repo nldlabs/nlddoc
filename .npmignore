@@ -1,0 +1,10 @@
+node_modules
+.git
+.gitignore
+*.log
+.DS_Store
+test
+tests
+*.test.js
+.vscode
+.idea

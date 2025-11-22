@@ -1,0 +1,43 @@
+{
+  "name": "nlddoc",
+  "version": "0.1.0",
+  "description": "Ultralight markdown documentation viewer and static site generator",
+  "type": "module",
+  "bin": {
+    "nlddoc": "./bin/nlddoc.js"
+  },
+  "files": [
+    "bin",
+    "src",
+    "README.md"
+  ],
+  "keywords": [
+    "documentation",
+    "markdown",
+    "vitepress",
+    "docs",
+    "static-site",
+    "viewer",
+    "no-config",
+    "zero-config"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/nlddoc.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/nlddoc/issues"
+  },
+  "homepage": "https://github.com/yourusername/nlddoc#readme",
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "vitepress": "^1.6.4",
+    "commander": "^12.0.0",
+    "gray-matter": "^4.0.3",
+    "chokidar": "^4.0.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
