@@ -7,15 +7,15 @@ import readline from 'readline'
 const DEFAULT_CONFIG = {
   title: "My Documentation",
   description: "Documentation for my project",
-  logo: {
-    type: "lucide",
-    icon: "snowflake",
-    color: "#fd9a00"
+  "logo": {
+    "type": "lucide",
+    "icon": "book-open",
+    "color": "#00c951"
   },
-  favicon: {
-    type: "lucide",
-    icon: "snowflake",
-    color: "#fd9a00"
+  "favicon": {
+    "type": "lucide",
+    "icon": "book-open",
+    "color": "#00c951"
   },
   search: true,
   outline: {
