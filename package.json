@@ -1,10 +1,10 @@
 {
-  "name": "nlddoc",
+  "name": "fastdocs",
   "version": "0.3.0",
   "description": "Zero-config markdown documentation viewer and static site generator powered by VitePress",
   "type": "module",
   "bin": {
-    "nlddoc": "./bin/nlddoc.js"
+    "fastdocs": "./bin/fastdocs.js"
   },
   "files": [
     "bin",
@@ -23,12 +23,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/nldlabs/nlddoc.git"
+    "url": "https://github.com/nldlabs/fastdocs.git"
   },
   "bugs": {
-    "url": "https://github.com/nldlabs/nlddoc/issues"
+    "url": "https://github.com/nldlabs/fastdocs/issues"
   },
-  "homepage": "https://nldlabs.github.io/nlddoc/",
+  "homepage": "https://nldlabs.github.io/fastdocs/",
   "author": "",
   "license": "MIT",
   "dependencies": {

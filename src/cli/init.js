@@ -28,7 +28,7 @@ const DEFAULT_CONFIG = {
 export async function init(targetPath = '.', options = {}) {
   // Resolve absolute path
   const absolutePath = isAbsolute(targetPath) ? targetPath : resolve(process.cwd(), targetPath)
-  const configPath = join(absolutePath, '.nlddoc')
+  const configPath = join(absolutePath, '.fastdocs')
   
   // Check if config already exists
   if (existsSync(configPath) && !options.force) {
@@ -38,7 +38,7 @@ export async function init(targetPath = '.', options = {}) {
     })
     
     const answer = await new Promise((resolve) => {
-      rl.question(pc.yellow('⚠ ') + `.nlddoc already exists in ${absolutePath}\nOverwrite? (y/N) `, resolve)
+      rl.question(pc.yellow('⚠ ') + `.fastdocs already exists in ${absolutePath}\nOverwrite? (y/N) `, resolve)
     })
     
     rl.close()
@@ -51,7 +51,7 @@ export async function init(targetPath = '.', options = {}) {
   }
   
   console.log()
-  console.log(pc.cyan(pc.bold('📙 nlddoc init')))
+  console.log(pc.cyan(pc.bold('❄️  FastDocs init')))
   console.log()
   console.log(pc.dim('─'.repeat(60)))
   console.log()
@@ -69,7 +69,7 @@ export async function init(targetPath = '.', options = {}) {
     console.log()
     console.log(`  ${pc.green('●')} ${pc.bold('File:')} ${pc.cyan(configPath)}`)
     console.log()
-    console.log(pc.dim('  Edit .nlddoc to customize:'))
+    console.log(pc.dim('  Edit .fastdocs to customize:'))
     console.log(pc.dim('  • Site title and description'))
     console.log(pc.dim('  • Logo and favicon (file or Lucide icon)'))
     console.log(pc.dim('  • Search and outline settings'))
@@ -77,8 +77,8 @@ export async function init(targetPath = '.', options = {}) {
     console.log(pc.dim('─'.repeat(60)))
     console.log()
     console.log(pc.dim('  Next steps:'))
-    console.log(`  ${pc.cyan('$')} ${pc.bold('nlddoc serve')} ${pc.dim('[path]')} ${pc.dim('# Preview your docs')}`)
-    console.log(`  ${pc.cyan('$')} ${pc.bold('nlddoc build')} ${pc.dim('[path] [output]')} ${pc.dim('# Build static site')}`)
+    console.log(`  ${pc.cyan('$')} ${pc.bold('fastdocs serve')} ${pc.dim('[path]')} ${pc.dim('# Preview your docs')}`)
+    console.log(`  ${pc.cyan('$')} ${pc.bold('fastdocs build')} ${pc.dim('[path] [output]')} ${pc.dim('# Build static site')}`)
     console.log()
     console.log(pc.dim('─'.repeat(60)))
     console.log()

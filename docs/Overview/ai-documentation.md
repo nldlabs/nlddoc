@@ -5,7 +5,7 @@ order: 4
 
 # Using AI to Generate Documentation
 
-AI assistants like GitHub Copilot can help you create and maintain documentation for nlddoc. Here's how to set them up effectively.
+AI assistants like GitHub Copilot can help you create and maintain documentation for FastDocs. Here's how to set them up effectively.
 
 ## Copilot Instructions File
 
@@ -14,7 +14,7 @@ Create a `.github/copilot-instructions.md` file in your project to guide AI assi
 ````markdown
 # Documentation Guidelines
 
-This project uses nlddoc for documentation. Follow these conventions:
+This project uses fastdocs for documentation. Follow these conventions:
 
 ## Structure
 
@@ -23,7 +23,7 @@ All documentation lives in the `/docs` folder with this structure:
 ```
 docs/
 ├── index.md          # Homepage
-├── .nlddoc           # Configuration file
+├── .fastdocs           # Configuration file
 ├── section-name/
 │   ├── index.md      # Section landing page
 │   └── topic.md      # Individual pages
@@ -82,7 +82,7 @@ Site introduction.
 
 ## Configuration
 
-The `.nlddoc` file controls site settings:
+The `.fastdocs` file controls site settings:
 
 ```json
 {
@@ -116,17 +116,17 @@ The `.nlddoc` file controls site settings:
 
 Preview documentation locally:
 ```bash
-npx nlddoc serve ./docs
+npx fastdocs serve ./docs
 ```
 
 Build static site:
 ```bash
-npx nlddoc build ./docs ./output
+npx fastdocs build ./docs ./output
 ```
 
 Create config file:
 ```bash
-npx nlddoc init ./docs
+npx fastdocs init ./docs
 ```
 
 ## Writing Guidelines
@@ -153,7 +153,7 @@ npx nlddoc init ./docs
 
 When asking AI to help with documentation:
 
-> "Create documentation for [feature/topic] following our nlddoc structure. Include:
+> "Create documentation for [feature/topic] following our fastdocs structure. Include:
 > - Frontmatter with title and order
 > - Clear headings and examples
 > - Links to related pages
@@ -219,7 +219,7 @@ Explanation...
 ## Example
 
 \`\`\`bash
-npx nlddoc serve ./docs
+npx fastdocs serve ./docs
 \`\`\`
 
 ## Next Steps
@@ -251,9 +251,9 @@ Getting started steps...
 
 ## Configuration Template
 
-Ask AI to generate a `.nlddoc` file:
+Ask AI to generate a `.fastdocs` file:
 
-> "Create a .nlddoc configuration for a [type of project] with a 
+> "Create a .fastdocs configuration for a [type of project] with a 
 > [color] [icon-name] icon"
 
 Example output:
@@ -337,7 +337,7 @@ A complete docs folder generated with AI assistance:
 
 ```
 docs/
-├── .nlddoc
+├── .fastdocs
 ├── index.md                    # order: 1
 ├── getting-started.md          # order: 2
 ├── guides/
@@ -361,7 +361,7 @@ docs/
 
 ## Resources
 
-- [nlddoc Guide](./index.md)
+- [fastdocs Guide](./index.md)
 - [Configuration Reference](../Guide/configuration.md)
 - [Custom Components](../Guide/custom-components.md)
 - [Frontmatter Guide](../Guide/Frontmatter.md)

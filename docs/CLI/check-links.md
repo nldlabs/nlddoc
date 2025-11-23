@@ -1,9 +1,9 @@
 ---
-title: nlddoc check-links
+title: fastdocs check-links
 order: 2
 ---
 
-# nlddoc check-links
+# fastdocs check-links
 
 Check all local markdown links in your documentation for broken references.
 
@@ -22,7 +22,7 @@ The `check-links` command finds these issues early, showing you exactly which fi
 ## Usage
 
 ```bash
-nlddoc check-links [path]
+fastdocs check-links [path]
 ```
 
 ## Arguments
@@ -39,7 +39,7 @@ Path to documentation directory to check.
 ### Check Current Directory
 
 ```bash
-nlddoc check-links
+fastdocs check-links
 ```
 
 Checks all links in the current directory.
@@ -47,7 +47,7 @@ Checks all links in the current directory.
 ### Check Specific Directory
 
 ```bash
-nlddoc check-links ./docs
+fastdocs check-links ./docs
 ```
 
 Checks all links in the `./docs` directory.
@@ -166,7 +166,7 @@ Links without file paths are skipped.
 
 ### serve
 
-When running `nlddoc serve`, the link checker runs automatically:
+When running `fastdocs serve`, the link checker runs automatically:
 - Checks links when server starts
 - Rechecks after file changes
 - Shows warnings for broken links
@@ -191,13 +191,13 @@ When running `nlddoc serve`, the link checker runs automatically:
 ────────────────────────────────────────────────────────────
   Fix these links to ensure your documentation works correctly.
   Note: Broken links will cause build errors.
-  Run nlddoc check-links for the full report.
+  Run fastdocs check-links for the full report.
 ────────────────────────────────────────────────────────────
 ```
 
 ### build
 
-When running `nlddoc build`, the link checker runs automatically:
+When running `fastdocs build`, the link checker runs automatically:
 - Checks links before building
 - **Fails the build** if broken links found
 - Shows detailed error report
@@ -206,7 +206,7 @@ When running `nlddoc build`, the link checker runs automatically:
 **Example output:**
 
 ```
-📙 nlddoc build
+❄️  Fastdocs build
 ────────────────────────────────────────────────────────────
 ● Loading /path/to/docs
 ● Output /path/to/dist
@@ -224,7 +224,7 @@ When running `nlddoc build`, the link checker runs automatically:
 
 ────────────────────────────────────────────────────────────
   Fix the broken links above and try again.
-  You can also run nlddoc check-links to see the full report.
+  You can also run fastdocs check-links to see the full report.
 ────────────────────────────────────────────────────────────
 ```
 
@@ -239,14 +239,14 @@ Useful in CI/CD scripts:
 
 ```bash
 #!/bin/bash
-nlddoc check-links ./docs
+fastdocs check-links ./docs
 if [ $? -eq 0 ]; then
   echo "Links OK, proceeding with build"
-  nlddoc build ./docs ./dist
+  fastdocs build ./docs ./dist
 else
   echo "Fix broken links before deploying"
   # Or skip link checking if you believe it's a false positive
-  # nlddoc build ./docs ./dist --skip-link-checking
+  # fastdocs build ./docs ./dist --skip-link-checking
   exit 1
 fi
 ```
@@ -264,10 +264,10 @@ If a valid link is reported as broken:
 
 **Still having issues?**
 
-- [Report a bug](https://github.com/nldlabs/nlddoc/issues) with the false positive
+- [Report a bug](https://github.com/nldlabs/fastdocs/issues) with the false positive
 - Temporary workaround for builds:
   ```bash
-  nlddoc build --skip-link-checking
+  fastdocs build --skip-link-checking
   ```
   ⚠️ **Warning:** This bypasses all link validation. Use only as a last resort.
 
@@ -299,7 +299,7 @@ These are all valid:
 Ensure the path exists:
 
 ```bash
-nlddoc check-links /path/to/docs
+fastdocs check-links /path/to/docs
 ```
 
 ### "No markdown files found"
@@ -315,7 +315,7 @@ The checker scans all markdown files recursively. For very large projects (1000+
 ### Before Committing
 
 ```bash
-nlddoc check-links
+fastdocs check-links
 ```
 
 Catch broken links before they reach production.
@@ -325,7 +325,7 @@ Catch broken links before they reach production.
 ```yaml
 # GitHub Actions example
 - name: Check links
-  run: npx nlddoc check-links ./docs
+  run: npx fastdocs check-links ./docs
 ```
 
 Prevent broken docs from being deployed.
@@ -335,13 +335,13 @@ Prevent broken docs from being deployed.
 Moved or renamed files? Check links:
 
 ```bash
-nlddoc check-links
+fastdocs check-links
 ```
 
 Find all references that need updating.
 
 ## Related
 
-- [nlddoc serve](./serve.md) - Auto-checks during development
-- [nlddoc build](./build.md) - Auto-checks before building
+- [fastdocs serve](./serve.md) - Auto-checks during development
+- [fastdocs build](./build.md) - Auto-checks before building
 - [Folder Structure](../Guide/folder-structure.md)

@@ -18,7 +18,7 @@ Deploy your documentation to Netlify with automatic deployments from Git.
 
 2. **Build your site:**
    ```bash
-   npx nlddoc build ./docs ./dist
+   npx fastdocs build ./docs ./dist
    ```
 
 3. **Deploy:**
@@ -39,7 +39,7 @@ Deploy your documentation to Netlify with automatic deployments from Git.
 
 **Build command:**
 ```
-npx nlddoc build ./docs ./dist --clean
+npx fastdocs build ./docs ./dist --clean
 ```
 
 **Publish directory:**
@@ -53,7 +53,7 @@ Create `netlify.toml`:
 
 ```toml
 [build]
-  command = "npx nlddoc build ./docs ./dist --clean"
+  command = "npx fastdocs build ./docs ./dist --clean"
   publish = "dist"
 
 [build.environment]
@@ -75,7 +75,7 @@ Complete `netlify.toml` example:
 
 ```toml
 [build]
-  command = "npx nlddoc build ./docs ./dist --clean"
+  command = "npx fastdocs build ./docs ./dist --clean"
   publish = "dist"
 
 [build.environment]
@@ -101,7 +101,7 @@ Complete `netlify.toml` example:
 
 ```toml
 [build]
-  command = "npx nlddoc build ./docs ./dist --clean --base /"
+  command = "npx fastdocs build ./docs ./dist --clean --base /"
 ```
 
 ### 2. Add Custom Domain
@@ -121,10 +121,10 @@ Configure in `netlify.toml`:
 
 ```toml
 [context.deploy-preview]
-  command = "npx nlddoc build ./docs ./dist --clean --base /"
+  command = "npx fastdocs build ./docs ./dist --clean --base /"
 
 [context.branch-deploy]
-  command = "npx nlddoc build ./docs ./dist --clean --base /"
+  command = "npx fastdocs build ./docs ./dist --clean --base /"
 ```
 
 ### Branch-Specific Builds
@@ -133,10 +133,10 @@ Deploy specific branches:
 
 ```toml
 [context.staging]
-  command = "npx nlddoc build ./docs ./dist --clean --base /staging/"
+  command = "npx fastdocs build ./docs ./dist --clean --base /staging/"
   
 [context.production]
-  command = "npx nlddoc build ./docs ./dist --clean --base /"
+  command = "npx fastdocs build ./docs ./dist --clean --base /"
 ```
 
 ## Environment Variables
@@ -147,7 +147,7 @@ Use in build:
 
 ```toml
 [build]
-  command = "npx nlddoc build ./docs ./dist --clean --base $BASE_URL"
+  command = "npx fastdocs build ./docs ./dist --clean --base $BASE_URL"
 ```
 
 ## Performance
@@ -232,7 +232,7 @@ A/B test different versions:
 
 ```toml
 [build]
-  command = "npx nlddoc build ./docs ./dist"
+  command = "npx fastdocs build ./docs ./dist"
 
 [[split_tests]]
   path = "/*"
@@ -245,7 +245,7 @@ Deploy without Git:
 
 ```bash
 # Build
-npx nlddoc build ./docs ./dist
+npx fastdocs build ./docs ./dist
 
 # Deploy
 netlify deploy --prod --dir dist

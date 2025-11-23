@@ -5,15 +5,15 @@ order: 5
 
 # FAQ
 
-Common questions about nlddoc.
+Common questions about FastDocs.
 
 ## General
 
-### What is nlddoc?
+### What is FastDocs?
 
-nlddoc is a zero-configuration tool for viewing and building markdown documentation. It wraps VitePress to provide an ultra-simple experience with no setup required.
+FastDocs is a zero-configuration tool for viewing and building markdown documentation. It wraps VitePress to provide an ultra-simple experience with no setup required.
 
-### Why use nlddoc instead of VitePress directly?
+### Why use FastDocs instead of VitePress directly?
 
 - **No setup** - Works instantly with `npx`
 - **Zero config** - No `.vitepress` folder or config files needed
@@ -21,25 +21,25 @@ nlddoc is a zero-configuration tool for viewing and building markdown documentat
 - **Auto navigation** - Generates sidebar from folder structure
 - **Simple** - Three commands: `init`, `serve`, `build`
 
-VitePress is powerful but requires setup. nlddoc is for when you just want to document something quickly.
+VitePress is powerful but requires setup. fastdocs is for when you just want to document something quickly.
 
-### Does nlddoc require installation?
+### Does fastdocs require installation?
 
 No! Use with `npx`:
 
 ```bash
-npx nlddoc serve ./docs
+npx fastdocs serve ./docs
 ```
 
 Or install globally for convenience:
 
 ```bash
-npm install -g nlddoc
+npm install -g fastdocs
 ```
 
 ### What's the name about?
 
-nlddoc stands for "Nate Louis Dev Docs" - a simple tool for creating documentation sites quickly.
+fastdocs stands for "Nate Louis Dev Docs" - a simple tool for creating documentation sites quickly.
 
 ## Technical
 
@@ -52,7 +52,7 @@ Check your version:
 node --version
 ```
 
-### Where does nlddoc store temporary files?
+### Where does fastdocs store temporary files?
 
 In your system's temp directory (e.g., `/tmp` on Linux/Mac). These are automatically cleaned up when the server stops.
 
@@ -62,7 +62,7 @@ Your documentation folder remains completely clean.
 
 Your docs are markdown - no TypeScript needed!
 
-If you're asking about extending nlddoc itself, yes, the codebase is JavaScript (ESM) but you could contribute TypeScript.
+If you're asking about extending fastdocs itself, yes, the codebase is JavaScript (ESM) but you could contribute TypeScript.
 
 ### Does it work offline?
 
@@ -74,9 +74,9 @@ If you're asking about extending nlddoc itself, yes, the codebase is JavaScript 
 
 ### Can I customize the theme?
 
-Not directly. nlddoc uses VitePress's default theme.
+Not directly. fastdocs uses VitePress's default theme.
 
-For heavy customization, consider using VitePress directly. nlddoc prioritizes simplicity over customization.
+For heavy customization, consider using VitePress directly. fastdocs prioritizes simplicity over customization.
 
 ### What markdown features are supported?
 
@@ -100,8 +100,8 @@ See [VitePress Markdown Guide](https://vitepress.dev/guide/markdown) for details
 Yes! Each docs folder is independent:
 
 ```bash
-npx nlddoc serve ./project-a/docs
-npx nlddoc serve ./project-b/docs --port 3001
+npx fastdocs serve ./project-a/docs
+npx fastdocs serve ./project-b/docs --port 3001
 ```
 
 ### How do I add images?
@@ -211,7 +211,7 @@ Check:
 Common causes:
 1. Invalid markdown syntax
 2. Broken links
-3. Invalid `.nlddoc` JSON
+3. Invalid `.fastdocs` JSON
 4. Node.js version too old
 
 Check the error message for specifics.
@@ -239,7 +239,7 @@ For `serve`:
 - Check terminal for errors
 
 For `build`:
-- Must rebuild: `nlddoc build`
+- Must rebuild: `fastdocs build`
 - Changes don't appear until you rebuild
 
 ### Assets return 404
@@ -248,17 +248,17 @@ Common with subdirectory deployments. Check `--base`:
 
 ```bash
 # For example.com/docs/
-nlddoc build --base /docs/
+fastdocs build --base /docs/
 
 # For example.com/
-nlddoc build --base /
+fastdocs build --base /
 ```
 
 ## Contributing
 
 ### How can I contribute?
 
-- Report bugs on [GitHub Issues](https://github.com/nldlabs/nlddoc/issues)
+- Report bugs on [GitHub Issues](https://github.com/nldlabs/fastdocs/issues)
 - Suggest features
 - Submit pull requests
 - Improve documentation
@@ -266,7 +266,7 @@ nlddoc build --base /
 
 ### Where's the code?
 
-GitHub: [nldlabs/nlddoc](https://github.com/nldlabs/nlddoc)
+GitHub: [nldlabs/fastdocs](https://github.com/nldlabs/fastdocs)
 
 ### Can I sponsor development?
 
@@ -276,4 +276,4 @@ Not set up yet, but contributions and GitHub stars help! ⭐
 
 - Check the [Guide](../Guide/index.md)
 - Read [CLI Reference](../CLI/index.md)
-- Open an [issue](https://github.com/nldlabs/nlddoc/issues)
+- Open an [issue](https://github.com/nldlabs/fastdocs/issues)

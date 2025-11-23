@@ -43,7 +43,7 @@ jobs:
           node-version: 18
       
       - name: Build documentation
-        run: npx nlddoc build ./docs ./dist --clean --base /${{ github.event.repository.name }}/
+        run: npx fastdocs build ./docs ./dist --clean --base /${{ github.event.repository.name }}/
       
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
@@ -90,7 +90,7 @@ For `https://username.github.io/repo-name/`:
 
 ::: v-pre
 ```yaml
-run: npx nlddoc build ./docs ./dist --base /${{ github.event.repository.name }}/
+run: npx fastdocs build ./docs ./dist --base /${{ github.event.repository.name }}/
 ```
 
 The `${{ github.event.repository.name }}` automatically uses your repo name.
@@ -103,7 +103,7 @@ For `https://username.github.io/`:
 Create a repository named `username.github.io` and use:
 
 ```yaml
-run: npx nlddoc build ./docs ./dist --base /
+run: npx fastdocs build ./docs ./dist --base /
 ```
 
 ## Custom Domain
@@ -126,7 +126,7 @@ username.github.io
 ### 3. Update Build
 
 ```yaml
-run: npx nlddoc build ./docs ./dist --clean --base /
+run: npx fastdocs build ./docs ./dist --clean --base /
 ```
 
 ### 4. Enable in GitHub
@@ -141,7 +141,7 @@ Without GitHub Actions:
 
 ```bash
 # Build
-npx nlddoc build ./docs ./dist --base /repo-name/
+npx fastdocs build ./docs ./dist --base /repo-name/
 
 # Install gh-pages
 npm install -g gh-pages
@@ -158,10 +158,10 @@ Check your base URL:
 
 ```bash
 # For username.github.io/repo-name/
-npx nlddoc build --base /repo-name/
+npx fastdocs build --base /repo-name/
 
 # For username.github.io/ (user site)
-npx nlddoc build --base /
+npx fastdocs build --base /
 ```
 
 ### Assets Not Loading
@@ -212,14 +212,14 @@ Deploy different branches to different paths:
     fi
 
 - name: Build
-  run: npx nlddoc build ./docs ./dist --base ${{ steps.base.outputs.path }}
+  run: npx fastdocs build ./docs ./dist --base ${{ steps.base.outputs.path }}
 ```
 :::
 
 ## Example Repositories
 
 See these repos for working examples:
-- [nlddoc documentation](https://github.com/nldlabs/nlddoc) (this site!)
+- [fastdocs documentation](https://github.com/nldlabs/fastdocs) (this site!)
 
 ## Related
 

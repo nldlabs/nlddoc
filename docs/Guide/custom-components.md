@@ -5,7 +5,7 @@ order: 5
 
 # Custom Components
 
-nlddoc includes custom Vue components you can use in your markdown files.
+fastdocs includes custom Vue components you can use in your markdown files.
 
 ## SubPages
 

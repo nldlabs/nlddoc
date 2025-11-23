@@ -15,7 +15,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
  */
 export function createTempProject(docsPath, config) {
   const hash = randomBytes(8).toString('hex')
-  const tempDir = join(tmpdir(), `nlddoc-${hash}`)
+  const tempDir = join(tmpdir(), `fastdocs-${hash}`)
   
   // Create temp directory structure
   mkdirSync(join(tempDir, '.vitepress'), { recursive: true })
@@ -39,7 +39,7 @@ export default generateVitePressConfig(userConfig, docsPath, true)
   
   // Create minimal package.json for VitePress
   const packageJson = {
-    name: 'nlddoc-temp',
+    name: 'fastdocs-temp',
     type: 'module',
     private: true,
     dependencies: {
@@ -69,7 +69,7 @@ export default generateVitePressConfig(userConfig, docsPath, true)
  */
 export function createTempProjectForBuild(docsPath, config) {
   const hash = randomBytes(8).toString('hex')
-  const tempDir = join(tmpdir(), `nlddoc-${hash}`)
+  const tempDir = join(tmpdir(), `fastdocs-${hash}`)
   
   // Create temp directory structure
   mkdirSync(tempDir, { recursive: true })
@@ -105,7 +105,7 @@ export default generateVitePressConfig(userConfig, docsPath, false)
   
   // Create minimal package.json for VitePress
   const packageJson = {
-    name: 'nlddoc-temp',
+    name: 'fastdocs-temp',
     type: 'module',
     private: true,
     dependencies: {

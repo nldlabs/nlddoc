@@ -100,7 +100,7 @@ This guide covers advanced configuration scenarios...
 
 ### Keep It Simple
 
-Only use frontmatter when you need it. nlddoc works great without any frontmatter.
+Only use frontmatter when you need it. fastdocs works great without any frontmatter.
 
 ### Consistent Ordering
 
@@ -131,7 +131,7 @@ Use frontmatter titles to make navigation clearer:
 title: Getting Started
 ---
 
-# Getting Started with nlddoc
+# Getting Started with fastdocs
 ```
 
 Navigation shows the short title, page shows the full title.

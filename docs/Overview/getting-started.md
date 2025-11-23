@@ -5,7 +5,7 @@ order: 1
 
 # Getting Started
 
-This guide will walk you through using nlddoc for the first time. No prior experience needed.
+This guide will walk you through using FastDocs for the first time. No prior experience needed.
 
 ## What You'll Need
 
@@ -33,7 +33,7 @@ my-project/
 Open a terminal in that folder and run:
 
 ```bash
-npx nlddoc serve .
+npx fastdocs serve .
 ```
 
 That's it! Your browser opens showing your documentation with:
@@ -44,7 +44,7 @@ That's it! Your browser opens showing your documentation with:
 The `.` means "current directory". You can also specify a path:
 
 ```bash
-npx nlddoc serve ./docs
+npx fastdocs serve ./docs
 ```
 
 ### Step 2: Try Editing
@@ -56,24 +56,24 @@ With the server running, open any markdown file and make a change. Save it. Your
 When you're ready to deploy, build a static site:
 
 ```bash
-npx nlddoc build . ./website
+npx fastdocs build . ./website
 ```
 
 This creates a `website` folder with HTML files you can upload anywhere. The first argument is your docs folder, the second is where to put the output.
 
 ## Customizing Your Site
 
-By default, nlddoc just works. But you can customize things.
+By default, fastdocs just works. But you can customize things.
 
 ### Create a Config File
 
 In your docs folder:
 
 ```bash
-npx nlddoc init
+npx fastdocs init
 ```
 
-This creates `.nlddoc` with settings you can edit:
+This creates `.fastdocs` with settings you can edit:
 
 ```json
 {
@@ -98,7 +98,7 @@ This creates `.nlddoc` with settings you can edit:
 }
 ```
 
-Open `.nlddoc` in any text editor and change what you want. The server picks up changes automatically.
+Open `.fastdocs` in any text editor and change what you want. The server picks up changes automatically.
 
 ### Common Customizations
 
@@ -140,7 +140,7 @@ See the [Configuration Guide](../Guide/configuration.md) for all options.
 
 ## Organizing Your Docs
 
-nlddoc automatically creates navigation from your folder structure:
+fastdocs automatically creates navigation from your folder structure:
 
 ```
 docs/
@@ -201,33 +201,33 @@ Now that you've got the basics:
 - Learn about [Frontmatter](../Guide/Frontmatter.md) for page metadata
 - Check out [Deployment](../Deployment/index.md) to publish your docs
 
-Or just start writing markdown and let nlddoc handle the rest.
+Or just start writing markdown and let fastdocs handle the rest.
 
 ## Quick Reference
 
 **Serve docs locally:**
 ```bash
-npx nlddoc serve ./docs
+npx fastdocs serve ./docs
 ```
 
 **Build static site:**
 ```bash
-npx nlddoc build ./docs ./output
+npx fastdocs build ./docs ./output
 ```
 
 **Create config file:**
 ```bash
-npx nlddoc init ./docs
+npx fastdocs init ./docs
 ```
 
 **Use custom port:**
 ```bash
-npx nlddoc serve ./docs --port 3000
+npx fastdocs serve ./docs --port 3000
 ```
 
 **Build for subdirectory deployment:**
 ```bash
-npx nlddoc build ./docs ./output --base /my-project/
+npx fastdocs build ./docs ./output --base /my-project/
 ```
 
 Need help? Check the [FAQ](./faq.md) or [CLI Reference](../CLI/index.md).

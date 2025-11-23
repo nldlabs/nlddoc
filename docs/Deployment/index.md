@@ -5,11 +5,11 @@ order: 99
 
 # Deployment
 
-Deploy your nlddoc site to any static hosting platform. Choose the one that fits your needs.
+Deploy your fastdocs site to any static hosting platform. Choose the one that fits your needs.
 
 ## Overview
 
-nlddoc builds a static site that works anywhere:
+fastdocs builds a static site that works anywhere:
 - ✅ No server-side rendering needed
 - ✅ No databases or backends
 - ✅ Just HTML, CSS, and JavaScript
@@ -21,7 +21,7 @@ All platforms follow the same pattern:
 
 1. **Build** your site:
    ```bash
-   nlddoc build ./docs ./dist
+   fastdocs build ./docs ./dist
    ```
 
 2. **Deploy** the `./dist` directory
@@ -62,7 +62,7 @@ All platforms support custom domains:
 
 1. **Build** with root base:
    ```bash
-   nlddoc build ./docs ./dist
+   fastdocs build ./docs ./dist
    ```
 
 2. **Configure** DNS to point to your host
@@ -74,12 +74,12 @@ All platforms support custom domains:
 
 Root domain or subdomain:
 ```bash
-nlddoc build --base /
+fastdocs build --base /
 ```
 
 Subdirectory:
 ```bash
-nlddoc build --base /docs/
+fastdocs build --base /docs/
 ```
 
 ### Test Locally
@@ -88,7 +88,7 @@ Before deploying, test your build:
 
 ```bash
 # Build
-nlddoc build ./docs ./dist
+fastdocs build ./docs ./dist
 
 # Serve locally (requires python or similar)
 cd dist

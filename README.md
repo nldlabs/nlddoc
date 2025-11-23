@@ -1,28 +1,28 @@
-# nlddoc
+# FastDocs
 
-**No-Lock Documentation** - An ultralight, zero-config markdown documentation viewer and static site generator.
+An ultralight, zero-config markdown documentation viewer and static site generator.
 
-📚 **[Full Documentation](https://nldlabs.github.io/nlddoc/)**
+📚 **[Full Documentation](https://nldlabs.github.io/fastdocs/)**
 
 ## Quick Start
 
 View your markdown docs instantly:
 
 ```bash
-npx nlddoc serve ./docs
+npx fastdocs serve ./docs
 ```
 
 Build a static site for deployment:
 
 ```bash
-npx nlddoc build ./docs ./output
+npx fastdocs build ./docs ./output
 ```
 
 Customize with a config file:
 
 ```bash
-npx nlddoc init ./docs
-# Edit .nlddoc, then serve or build
+npx fastdocs init ./docs
+# Edit .fastdocs, then serve or build
 ```
 
 ## Features
@@ -42,28 +42,28 @@ npx nlddoc init ./docs
 No installation needed! Use with `npx`:
 
 ```bash
-npx nlddoc serve
+npx fastdocs serve
 ```
 
 Or install globally:
 
 ```bash
-npm install -g nlddoc
-nlddoc serve ./docs
+npm install -g fastdocs
+fastdocs serve ./docs
 ```
 
 ## Documentation
 
-For complete documentation, guides, and examples, visit **[nldlabs.github.io/nlddoc](https://nldlabs.github.io/nlddoc/)**.
+For complete documentation, guides, and examples, visit **[nldlabs.github.io/fastdocs](https://nldlabs.github.io/fastdocs/)**.
 
 ## Commands
 
 ### init
 
-Create a `.nlddoc` configuration file with default settings in your documentation directory.
+Create a `.fastdocs` configuration file with default settings in your documentation directory.
 
 ```bash
-nlddoc init [path]
+fastdocs init [path]
 ```
 
 **Arguments:**
@@ -75,23 +75,23 @@ nlddoc init [path]
 **Examples:**
 ```bash
 # Create config in current directory
-nlddoc init
+fastdocs init
 
 # Create config in specific directory
-nlddoc init ./docs
+fastdocs init ./docs
 
 # Overwrite existing config
-nlddoc init --force
+fastdocs init --force
 ```
 
-The generated `.nlddoc` file includes all available options with sensible defaults. Edit it to customize your documentation site.
+The generated `.fastdocs` file includes all available options with sensible defaults. Edit it to customize your documentation site.
 
 ### serve
 
 Start a local development server to view your documentation.
 
 ```bash
-nlddoc serve [path] [options]
+fastdocs serve [path] [options]
 ```
 
 **Arguments:**
@@ -105,16 +105,16 @@ nlddoc serve [path] [options]
 **Examples:**
 ```bash
 # Serve current directory
-nlddoc serve
+fastdocs serve
 
 # Serve specific directory
-nlddoc serve ./my-docs
+fastdocs serve ./my-docs
 
 # Use custom port
-nlddoc serve ./docs --port 3000
+fastdocs serve ./docs --port 3000
 
 # Allow external access
-nlddoc serve ./docs --host
+fastdocs serve ./docs --host
 ```
 
 ### build
@@ -122,7 +122,7 @@ nlddoc serve ./docs --host
 Build a static site from your documentation.
 
 ```bash
-nlddoc build [input] [output] [options]
+fastdocs build [input] [output] [options]
 ```
 
 **Arguments:**
@@ -136,29 +136,29 @@ nlddoc build [input] [output] [options]
 **Examples:**
 ```bash
 # Build with defaults
-nlddoc build
+fastdocs build
 
 # Specify input and output
-nlddoc build ./docs ./public
+fastdocs build ./docs ./public
 
 # Deploy to subdirectory
-nlddoc build ./docs ./dist --base /my-project/
+fastdocs build ./docs ./dist --base /my-project/
 
 # Skip confirmation prompt
-nlddoc build ./docs ./dist --clean
+fastdocs build ./docs ./dist --clean
 ```
 
 ## Configuration
 
-nlddoc works great with zero configuration, but you can customize it by creating a `.nlddoc` file in your documentation directory.
+fastdocs works great with zero configuration, but you can customize it by creating a `.fastdocs` file in your documentation directory.
 
 **Quick start:**
 ```bash
 # Generate a config file with defaults
-nlddoc init
+fastdocs init
 ```
 
-**Example `.nlddoc`:**
+**Example `.fastdocs`:**
 ```json
 {
   "title": "My Documentation",
@@ -211,7 +211,7 @@ Your content here...
 
 ## Custom Components
 
-nlddoc includes custom Vue components you can use in your markdown:
+fastdocs includes custom Vue components you can use in your markdown:
 
 ### SubPages
 
@@ -235,7 +235,7 @@ Show the entire site structure (great for index pages):
 
 ## Folder Structure
 
-nlddoc automatically generates navigation from your folder structure:
+fastdocs automatically generates navigation from your folder structure:
 
 ```
 docs/
@@ -262,27 +262,27 @@ The build command generates a static site ready for any hosting platform:
 ### GitHub Pages
 
 ```bash
-nlddoc build ./docs ./dist --base /repo-name/
+fastdocs build ./docs ./dist --base /repo-name/
 # Deploy ./dist to gh-pages branch
 ```
 
 ### Netlify
 
 ```bash
-nlddoc build ./docs ./dist
+fastdocs build ./docs ./dist
 # Deploy ./dist directory
 ```
 
 ### Vercel
 
 ```bash
-nlddoc build ./docs ./dist
+fastdocs build ./docs ./dist
 # Deploy ./dist directory
 ```
 
 ## How It Works
 
-nlddoc creates a temporary VitePress project outside your documentation directory, keeping your docs folder clean. When you run serve or build:
+fastdocs creates a temporary VitePress project outside your documentation directory, keeping your docs folder clean. When you run serve or build:
 
 1. Scans your documentation directory
 2. Generates VitePress configuration

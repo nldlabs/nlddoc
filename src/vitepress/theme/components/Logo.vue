@@ -5,7 +5,7 @@ import * as LucideIcons from 'lucide-vue-next'
 
 const { theme, site } = useData()
 
-const logoConfig = computed(() => theme.value.nlddocLogo)
+const logoConfig = computed(() => theme.value.fastdocsLogo)
 const baseUrl = computed(() => site.value.base || '/')
 
 // Determine logo type and icon
@@ -93,7 +93,7 @@ const logoPath = computed(() => {
 </script>
 
 <template>
-  <div v-if="logoType" class="nlddoc-logo">
+  <div v-if="logoType" class="fastdocs-logo">
     <!-- Lucide icon logo -->
     <component 
       v-if="logoType === 'lucide' && iconComponent" 
@@ -118,7 +118,7 @@ const logoPath = computed(() => {
 </template>
 
 <style scoped>
-.nlddoc-logo {
+.fastdocs-logo {
   display: flex;
   align-items: center;
   gap: 0.5rem;

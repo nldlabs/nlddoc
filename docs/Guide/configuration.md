@@ -5,17 +5,17 @@ order: 3
 
 # Customizing Your Site
 
-nlddoc works great without any setup. But if you want to customize things like the title or logo, here's how.
+FastDocs works great without any setup. But if you want to customize things like the title or logo, here's how.
 
 ## Creating a Settings File
 
 In your docs folder, run:
 
 ```bash
-npx nlddoc init
+npx fastdocs init
 ```
 
-This creates a file called `.nlddoc` with these settings:
+This creates a file called `.fastdocs` with these settings:
 
 ```json
 {
@@ -34,7 +34,7 @@ This creates a file called `.nlddoc` with these settings:
 
 ## Changing Settings
 
-Open `.nlddoc` in any text editor and change what you want:
+Open `.fastdocs` in any text editor and change what you want:
 
 ### Change the Site Title
 

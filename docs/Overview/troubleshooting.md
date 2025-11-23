@@ -5,20 +5,20 @@ order: 6
 
 # Troubleshooting
 
-Solutions to common issues when using nlddoc.
+Solutions to common issues when using FastDocs.
 
 ## Server Issues
 
 ### Server won't start
 
-**Symptoms:** `nlddoc serve` fails or hangs
+**Symptoms:** `fastdocs serve` fails or hangs
 
 **Common causes:**
 
 1. **Port already in use**
    ```bash
    # Try a different port
-   nlddoc serve --port 3000
+   fastdocs serve --port 3000
    ```
 
 2. **Node.js version too old**
@@ -85,7 +85,7 @@ Solutions to common issues when using nlddoc.
    ```bash
    # Stop with Ctrl+C
    # Start again
-   nlddoc serve ./docs
+   fastdocs serve ./docs
    ```
 
 ### Hot reload not working
@@ -118,7 +118,7 @@ Solutions to common issues when using nlddoc.
 This means you have broken links to other markdown files. Run the link checker to find them:
 
 ```bash
-nlddoc check-links ./docs
+fastdocs check-links ./docs
 ```
 
 You'll see output like:
@@ -135,15 +135,15 @@ Fix each broken link by:
 - Updating the link to the correct path
 - Removing the link if no longer needed
 
-See [nlddoc check-links](../CLI/check-links.md) for details.
+See [fastdocs check-links](../CLI/check-links.md) for details.
 
 **False positive?** If the link checker incorrectly reports a valid link as broken:
 
 1. Verify the link is actually valid (file exists, correct path, case-sensitive)
-2. [Report the bug](https://github.com/nldlabs/nlddoc/issues)
+2. [Report the bug](https://github.com/nldlabs/fastdocs/issues)
 3. Temporary workaround:
    ```bash
-   nlddoc build --skip-link-checking
+   fastdocs build --skip-link-checking
    ```
    ⚠️ Use with caution - may allow broken links in deployed docs
 
@@ -151,12 +151,12 @@ See [nlddoc check-links](../CLI/check-links.md) for details.
 
 **Symptoms:**
 ```
-Error: Invalid JSON in .nlddoc
+Error: Invalid JSON in .fastdocs
 ```
 
 **Solution:**
 
-Your `.nlddoc` configuration file has invalid JSON syntax.
+Your `.fastdocs` configuration file has invalid JSON syntax.
 
 1. **Check for common JSON errors:**
    - Missing commas between properties
@@ -167,7 +167,7 @@ Your `.nlddoc` configuration file has invalid JSON syntax.
 2. **Validate JSON:**
    ```bash
    # Use a JSON validator
-   cat .nlddoc | python -m json.tool
+   cat .fastdocs | python -m json.tool
    ```
 
 3. **Example valid config:**
@@ -190,25 +190,25 @@ This is usually a `--base` URL problem.
 1. **Deploying to subdirectory?**
    ```bash
    # For https://example.com/docs/
-   nlddoc build ./docs ./dist --base /docs/
+   fastdocs build ./docs ./dist --base /docs/
    ```
 
 2. **Deploying to root?**
    ```bash
    # For https://example.com/
-   nlddoc build ./docs ./dist --base /
+   fastdocs build ./docs ./dist --base /
    ```
 
 3. **Important:** Include leading and trailing slashes!
    ```bash
    # Wrong
-   nlddoc build --base docs
+   fastdocs build --base docs
    
    # Correct
-   nlddoc build --base /docs/
+   fastdocs build --base /docs/
    ```
 
-See [nlddoc build](../CLI/build.md) for base URL details.
+See [fastdocs build](../CLI/build.md) for base URL details.
 
 ### Build output directory not updating
 
@@ -219,14 +219,14 @@ See [nlddoc build](../CLI/build.md) for base URL details.
 Use `--clean` to force overwrite:
 
 ```bash
-nlddoc build ./docs ./dist --clean
+fastdocs build ./docs ./dist --clean
 ```
 
 Or manually delete output directory first:
 
 ```bash
 rm -rf ./dist
-nlddoc build ./docs ./dist
+fastdocs build ./docs ./dist
 ```
 
 ### Build is very slow
@@ -320,7 +320,7 @@ title: My Page Name
 # My Page Name
 ```
 
-Without frontmatter, nlddoc converts filenames to titles automatically:
+Without frontmatter, fastdocs converts filenames to titles automatically:
 - `getting-started.md` → "Getting Started"
 - `api-reference.md` → "Api Reference"
 
@@ -331,7 +331,7 @@ Without frontmatter, nlddoc converts filenames to titles automatically:
 **Possible causes:**
 
 1. **Symbolic links**
-   - nlddoc follows symlinks
+   - fastdocs follows symlinks
    - May show same file multiple times
 
 2. **Case sensitivity**
@@ -453,7 +453,7 @@ See [VitePress language list](https://github.com/shikijs/shiki/blob/main/docs/la
 
 **Solutions:**
 
-1. **Check logo syntax in `.nlddoc`**
+1. **Check logo syntax in `.fastdocs`**
    ```json
    {
      "logo": "lucide:book-open"
@@ -481,7 +481,7 @@ See [Icons Guide](../Guide/icons.md) for details.
 
 **Solutions:**
 
-1. **Check favicon in `.nlddoc`**
+1. **Check favicon in `.fastdocs`**
    ```json
    {
      "favicon": "lucide:book-open"
@@ -531,7 +531,7 @@ Colors must be valid hex codes: `#RRGGBB`
 1. **Check base URL**
    ```bash
    # For https://username.github.io/repo-name/
-   nlddoc build --base /repo-name/
+   fastdocs build --base /repo-name/
    ```
 
 2. **Verify gh-pages branch**
@@ -553,7 +553,7 @@ See [GitHub Pages Guide](../Deployment/github-pages.md).
 
 1. **Set build command**
    ```
-   npx nlddoc build ./docs ./dist
+   npx fastdocs build ./docs ./dist
    ```
 
 2. **Set publish directory**
@@ -576,7 +576,7 @@ See [Netlify Guide](../Deployment/netlify.md).
 **Solutions:**
 
 1. **Configure build settings**
-   - Build command: `npx nlddoc build ./docs ./dist`
+   - Build command: `npx fastdocs build ./docs ./dist`
    - Output directory: `dist`
 
 2. **Set Node.js version**
@@ -639,11 +639,11 @@ See [Vercel Guide](../Deployment/Vercel.md).
    - [Configuration](../Guide/configuration.md)
 
 3. **Search existing issues**
-   - [GitHub Issues](https://github.com/nldlabs/nlddoc/issues)
+   - [GitHub Issues](https://github.com/nldlabs/fastdocs/issues)
    - Someone may have solved it already
 
 4. **Ask for help**
-   - Open a [new issue](https://github.com/nldlabs/nlddoc/issues/new)
+   - Open a [new issue](https://github.com/nldlabs/fastdocs/issues/new)
    - Include:
      - Error message
      - Command you ran
@@ -651,7 +651,7 @@ See [Vercel Guide](../Deployment/Vercel.md).
      - Operating system
 
 5. **Check VitePress docs**
-   - nlddoc uses VitePress under the hood
+   - fastdocs uses VitePress under the hood
    - [VitePress docs](https://vitepress.dev) may have answers
    - Especially for markdown features
 

@@ -3,7 +3,7 @@ title: Docs
 order: 1
 ---
 
-# nlddoc
+# FastDocs
 
 Turn a folder of markdown files into a searchable documentation website. No setup, no config files, just write.
 
@@ -16,7 +16,7 @@ That's annoying when you just want to document something.
 ## The Solution
 
 ```bash
-npx nlddoc serve .
+npx fastdocs serve .
 ```
 
 That's it. Your documentation is now a website with navigation, search, and hot reload. Your folder structure becomes the menu. Your markdown stays markdown.
@@ -24,7 +24,7 @@ That's it. Your documentation is now a website with navigation, search, and hot 
 Want to deploy it? 
 
 ```bash
-npx nlddoc build . ./website
+npx fastdocs build . ./website
 ```
 
 Upload the `website` folder to any static hosting service. Done.
@@ -33,7 +33,7 @@ Upload the `website` folder to any static hosting service. Done.
 
 Documentation tools are powerful but overkill for most projects. You don't need a CMS. You don't need a build pipeline. You just need your markdown to be readable.
 
-nlddoc wraps VitePress (which is excellent) and makes it instant. No `.vitepress` folder. No config unless you want one. Your docs folder stays clean.
+fastdocs wraps VitePress (which is excellent) and makes it instant. No `.vitepress` folder. No config unless you want one. Your docs folder stays clean.
 
 Think of it like `python -m http.server` for documentation. Quick, simple, gets out of your way.
 
@@ -66,7 +66,7 @@ Not for:
 - Marketing sites (use a real framework)
 - Heavy customization (use VitePress directly)
 
-nlddoc is for documentation. It does that one thing well.
+fastdocs is for documentation. It does that one thing well.
 
 ## Get Started
 

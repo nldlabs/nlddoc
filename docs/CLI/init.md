@@ -1,16 +1,16 @@
 ---
-title: nlddoc init
+title: fastdocs init
 order: 2
 ---
 
-# nlddoc init
+# fastdocs init
 
-Create a `.nlddoc` configuration file with default settings.
+Create a `.fastdocs` configuration file with default settings.
 
 ## Usage
 
 ```bash
-nlddoc init [path]
+fastdocs init [path]
 ```
 
 ## Arguments
@@ -36,30 +36,30 @@ Overwrite existing configuration without confirmation.
 ### Create in Current Directory
 
 ```bash
-nlddoc init
+fastdocs init
 ```
 
-Creates `.nlddoc` in the current directory.
+Creates `.fastdocs` in the current directory.
 
 ### Create in Specific Directory
 
 ```bash
-nlddoc init ./docs
+fastdocs init ./docs
 ```
 
-Creates `.nlddoc` in the `./docs` directory.
+Creates `.fastdocs` in the `./docs` directory.
 
 ### Force Overwrite
 
 ```bash
-nlddoc init --force
+fastdocs init --force
 ```
 
-Overwrites existing `.nlddoc` without asking.
+Overwrites existing `.fastdocs` without asking.
 
 ## Generated Config
 
-The command creates a `.nlddoc` file with these defaults:
+The command creates a `.fastdocs` file with these defaults:
 
 ```json
 {
@@ -79,7 +79,7 @@ The command creates a `.nlddoc` file with these defaults:
 
 ### Existing Config
 
-If `.nlddoc` already exists, nlddoc will:
+If `.fastdocs` already exists, fastdocs will:
 1. Prompt for confirmation
 2. Overwrite only if you confirm "y"
 3. Cancel if you answer anything else
@@ -88,7 +88,7 @@ Use `--force` to skip the prompt.
 
 ### Error Handling
 
-If the directory doesn't exist or isn't writable, nlddoc will:
+If the directory doesn't exist or isn't writable, fastdocs will:
 - Show an error message
 - Exit with code 1
 
@@ -97,23 +97,23 @@ If the directory doesn't exist or isn't writable, nlddoc will:
 Success output:
 
 ```
-📙 nlddoc init
+❄️  Fastdocs init
 ────────────────────────────────────────────────────────────
 ● Loading /path/to/docs
 ────────────────────────────────────────────────────────────
 
 ✓ Configuration created!
 ────────────────────────────────────────────────────────────
-  ● File: /path/to/docs/.nlddoc
+  ● File: /path/to/docs/.fastdocs
 
-  Edit .nlddoc to customize:
+  Edit .fastdocs to customize:
   • Site title and description
   • Logo and branding
   • Search and outline settings
 ────────────────────────────────────────────────────────────
   Next steps:
-  $ nlddoc serve [path] # Preview your docs
-  $ nlddoc build [path] [output] # Build static site
+  $ fastdocs serve [path] # Preview your docs
+  $ fastdocs build [path] [output] # Build static site
 ────────────────────────────────────────────────────────────
 ```
 
@@ -121,12 +121,12 @@ Success output:
 
 After creating a config:
 
-1. **Edit** `.nlddoc` to customize your site
-2. **Serve** to preview: `nlddoc serve`
-3. **Build** for deployment: `nlddoc build`
+1. **Edit** `.fastdocs` to customize your site
+2. **Serve** to preview: `fastdocs serve`
+3. **Build** for deployment: `fastdocs build`
 
 ## Related
 
 - [Configuration Guide](../Guide/configuration.md)
-- [nlddoc serve](./serve.md)
-- [nlddoc build](./build.md)
+- [fastdocs serve](./serve.md)
+- [fastdocs build](./build.md)

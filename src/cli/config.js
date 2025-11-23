@@ -20,7 +20,7 @@ export function loadConfig(docsPath) {
     }
   }
 
-  const configPath = join(docsPath, '.nlddoc')
+  const configPath = join(docsPath, '.fastdocs')
   
   if (existsSync(configPath)) {
     try {
@@ -37,7 +37,7 @@ export function loadConfig(docsPath) {
         }
       }
     } catch (err) {
-      console.warn(`⚠ Warning: Could not parse .nlddoc file: ${err.message}`)
+      console.warn(`⚠ Warning: Could not parse .fastdocs file: ${err.message}`)
       console.warn('  Using default configuration')
       return defaults
     }

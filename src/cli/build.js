@@ -56,7 +56,7 @@ export async function build(inputPath = '.', outputPath = './dist', options = {}
   const config = loadConfig(absoluteInputPath)
   
   console.log()
-  console.log(pc.cyan(pc.bold('📙 nlddoc build')))
+  console.log(pc.cyan(pc.bold('❄️  FastDocs build')))
   console.log()
   console.log(pc.dim('─'.repeat(60)))
   console.log()
@@ -89,7 +89,7 @@ export async function build(inputPath = '.', outputPath = './dist', options = {}
       console.log(pc.dim('─'.repeat(60)))
       console.log()
       console.log(pc.dim('  Fix the broken links above and try again.'))
-      console.log(pc.dim('  You can also run ') + pc.cyan('nlddoc check-links') + pc.dim(' to see the full report.'))
+      console.log(pc.dim('  You can also run ') + pc.cyan('fastdocs check-links') + pc.dim(' to see the full report.'))
       console.log(pc.dim('  Or use ') + pc.cyan('--skip-link-checking') + pc.dim(' to build anyway (not recommended).'))
       console.log()
       console.log(pc.dim('─'.repeat(60)))

@@ -5,7 +5,7 @@ order: 3
 
 # Getting Started
 
-You don't need to know anything technical to use nlddoc. If you can edit text files, you can create beautiful documentation.
+You don't need to know anything technical to use fastdocs. If you can edit text files, you can create beautiful documentation.
 
 ## What You Need
 
@@ -20,7 +20,7 @@ You don't need to know anything technical to use nlddoc. If you can edit text fi
 2. Type `cd ` (with a space after cd)
 3. Drag your docs folder into Terminal (this types the path for you)
 4. Press Enter
-5. Type: `npx nlddoc serve .`
+5. Type: `npx fastdocs serve .`
 6. Press Enter
 
 A website opens showing your docs!
@@ -30,7 +30,7 @@ A website opens showing your docs!
 1. Open your docs folder in File Explorer
 2. Click in the address bar at the top
 3. Type `cmd` and press Enter (opens command prompt)
-4. Type: `npx nlddoc serve .`
+4. Type: `npx fastdocs serve .`
 5. Press Enter
 
 A website opens showing your docs!

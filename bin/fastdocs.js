@@ -7,13 +7,13 @@ import { init } from '../src/cli/init.js'
 import { checkLinksCommand } from '../src/cli/check-links.js'
 
 program
-  .name('nlddoc')
+  .name('fastdocs')
   .description('Ultralight markdown documentation viewer and static site generator')
   .version('0.1.0')
 
 program
   .command('init [path]')
-  .description('Create a .nlddoc configuration file with defaults')
+  .description('Create a .fastdocs configuration file with defaults')
   .option('-f, --force', 'Overwrite existing configuration without confirmation')
   .action(init)
 

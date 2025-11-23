@@ -1,16 +1,16 @@
 ---
-title: nlddoc build
+title: fastdocs build
 order: 3
 ---
 
-# nlddoc build
+# fastdocs build
 
 Build a static site from your documentation, ready for deployment.
 
 ## Usage
 
 ```bash
-nlddoc build [input] [output] [options]
+fastdocs build [input] [output] [options]
 ```
 
 ## Arguments
@@ -58,7 +58,7 @@ Skip link validation before building.
 ### Build with Defaults
 
 ```bash
-nlddoc build
+fastdocs build
 ```
 
 Builds current directory to `./dist`.
@@ -66,7 +66,7 @@ Builds current directory to `./dist`.
 ### Specify Input and Output
 
 ```bash
-nlddoc build ./docs ./public
+fastdocs build ./docs ./public
 ```
 
 Builds `./docs` to `./public`.
@@ -74,7 +74,7 @@ Builds `./docs` to `./public`.
 ### Deploy to Subdirectory
 
 ```bash
-nlddoc build ./docs ./dist --base /my-project/
+fastdocs build ./docs ./dist --base /my-project/
 ```
 
 For deploying to `https://example.com/my-project/`.
@@ -82,7 +82,7 @@ For deploying to `https://example.com/my-project/`.
 ### Skip Confirmation
 
 ```bash
-nlddoc build ./docs ./dist --clean
+fastdocs build ./docs ./dist --clean
 ```
 
 ### Skip Link Checking
@@ -90,7 +90,7 @@ nlddoc build ./docs ./dist --clean
 **Not recommended** - only use if link checker has a bug:
 
 ```bash
-nlddoc build ./docs ./dist --skip-link-checking
+fastdocs build ./docs ./dist --skip-link-checking
 ```
 
 This bypasses link validation and may result in broken links in your deployed documentation.
@@ -99,13 +99,13 @@ Overwrites output without asking.
 
 ## How It Works
 
-When you run `build`, nlddoc:
+When you run `build`, fastdocs:
 
 1. **Validates** input directory exists and contains `.md` files
 2. **Prompts** if output directory exists (unless `--clean`)
 3. **Checks links** - validates all local markdown links
 4. **Fails** if broken links found (prevents broken deployments)
-5. **Loads** configuration from `.nlddoc`
+5. **Loads** configuration from `.fastdocs`
 6. **Creates** temporary VitePress project
 7. **Copies** markdown files to temp directory
 8. **Installs** dependencies
@@ -118,7 +118,7 @@ When you run `build`, nlddoc:
 ### Successful Build
 
 ```
-📙 nlddoc build
+❄️  Fastdocs build
 ────────────────────────────────────────────────────────────
 ● Loading /path/to/docs
 ● Output /path/to/dist
@@ -139,7 +139,7 @@ When you run `build`, nlddoc:
 ### Build Failed (Broken Links)
 
 ```
-📙 nlddoc build
+❄️  Fastdocs build
 ────────────────────────────────────────────────────────────
 ● Loading /path/to/docs
 ● Output /path/to/dist
@@ -155,7 +155,7 @@ When you run `build`, nlddoc:
     → ../config.md (line 10)
 ────────────────────────────────────────────────────────────
   Fix the broken links above and try again.
-  You can also run nlddoc check-links to see the full report.
+  You can also run fastdocs check-links to see the full report.
 ────────────────────────────────────────────────────────────
 ```
 
@@ -170,7 +170,7 @@ The `--base` option is crucial for subdirectory deployments.
 Deploying to `https://example.com/`:
 
 ```bash
-nlddoc build ./docs ./dist
+fastdocs build ./docs ./dist
 ```
 
 No `--base` needed (defaults to `/`).
@@ -180,7 +180,7 @@ No `--base` needed (defaults to `/`).
 Deploying to `https://example.com/docs/`:
 
 ```bash
-nlddoc build ./docs ./dist --base /docs/
+fastdocs build ./docs ./dist --base /docs/
 ```
 
 **Important:** Include leading and trailing slashes!
@@ -190,7 +190,7 @@ nlddoc build ./docs ./dist --base /docs/
 For `https://username.github.io/`:
 
 ```bash
-nlddoc build ./docs ./dist
+fastdocs build ./docs ./dist
 ```
 
 ### GitHub Pages (Project Site)
@@ -198,7 +198,7 @@ nlddoc build ./docs ./dist
 For `https://username.github.io/repo-name/`:
 
 ```bash
-nlddoc build ./docs ./dist --base /repo-name/
+fastdocs build ./docs ./dist --base /repo-name/
 ```
 
 ## Build Output
@@ -227,7 +227,7 @@ All files are optimized:
 
 ### Without --clean
 
-If output directory exists, nlddoc prompts:
+If output directory exists, fastdocs prompts:
 
 ```
 Output directory exists: /path/to/dist
@@ -242,7 +242,7 @@ Overwrite? (y/N)
 Automatically overwrites without asking:
 
 ```bash
-nlddoc build --clean
+fastdocs build --clean
 ```
 
 Use in CI/CD pipelines where prompts aren't possible.
@@ -254,35 +254,35 @@ The built site works with any static hosting:
 ### GitHub Pages
 
 ```bash
-nlddoc build ./docs ./dist --base /repo-name/
+fastdocs build ./docs ./dist --base /repo-name/
 # Push dist/ to gh-pages branch
 ```
 
 ### Netlify
 
 ```bash
-nlddoc build ./docs ./dist
+fastdocs build ./docs ./dist
 # Deploy dist/ directory
 ```
 
 ### Vercel
 
 ```bash
-nlddoc build ./docs ./dist
+fastdocs build ./docs ./dist
 # Deploy dist/ directory
 ```
 
 ### Cloudflare Pages
 
 ```bash
-nlddoc build ./docs ./dist
+fastdocs build ./docs ./dist
 # Deploy dist/ directory
 ```
 
 ### AWS S3
 
 ```bash
-nlddoc build ./docs ./dist
+fastdocs build ./docs ./dist
 aws s3 sync ./dist s3://my-bucket --delete
 ```
 
@@ -292,7 +292,7 @@ aws s3 sync ./dist s3://my-bucket --delete
 
 ```yaml
 - name: Build docs
-  run: npx nlddoc build ./docs ./dist --clean --base /repo-name/
+  run: npx fastdocs build ./docs ./dist --clean --base /repo-name/
 
 - name: Deploy to GitHub Pages
   uses: peaceiris/actions-gh-pages@v3
@@ -306,7 +306,7 @@ aws s3 sync ./dist s3://my-bucket --delete
 ```yaml
 build:
   script:
-    - npx nlddoc build ./docs ./public --clean
+    - npx fastdocs build ./docs ./public --clean
   artifacts:
     paths:
       - public
@@ -320,10 +320,10 @@ Check your `--base` setting:
 
 ```bash
 # Wrong (missing slashes)
-nlddoc build --base my-project
+fastdocs build --base my-project
 
 # Correct
-nlddoc build --base /my-project/
+fastdocs build --base /my-project/
 ```
 
 ### Build Fails
@@ -331,7 +331,7 @@ nlddoc build --base /my-project/
 Common causes:
 - Invalid markdown syntax
 - Broken links in markdown
-- Invalid `.nlddoc` configuration
+- Invalid `.fastdocs` configuration
 
 Check the error message for details.
 
@@ -347,11 +347,11 @@ If the link checker incorrectly reports a valid link as broken:
    - File has `.md` extension
 
 2. **Report the bug**
-   - [Open an issue](https://github.com/nldlabs/nlddoc/issues) with the false positive
+   - [Open an issue](https://github.com/nldlabs/fastdocs/issues) with the false positive
 
 3. **Temporary workaround**
    ```bash
-   nlddoc build --skip-link-checking
+   fastdocs build --skip-link-checking
    ```
    
    This bypasses link validation entirely. Use with caution as it may allow broken links in your deployed docs.
@@ -361,7 +361,7 @@ If the link checker incorrectly reports a valid link as broken:
 Ensure you're overwriting the old build:
 
 ```bash
-nlddoc build --clean
+fastdocs build --clean
 ```
 
 ## Performance
@@ -375,7 +375,7 @@ Typical build: 10-30 seconds for 50-100 pages.
 
 ## Related
 
-- [nlddoc check-links](./check-links.md)
-- [nlddoc serve](./serve.md)
+- [fastdocs check-links](./check-links.md)
+- [fastdocs serve](./serve.md)
 - [Deployment Guide](../Deployment/index.md)
 - [Configuration](../Guide/configuration.md)

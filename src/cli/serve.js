@@ -36,7 +36,7 @@ export async function serve(docsPath = '.', options = {}) {
   const config = loadConfig(absoluteDocsPath)
   
   console.log()
-  console.log(pc.cyan(pc.bold('📙 nlddoc')))
+  console.log(pc.cyan(pc.bold('❄️  FastDocs')))
   console.log()
   
   // Create temporary VitePress project
@@ -100,7 +100,7 @@ export async function serve(docsPath = '.', options = {}) {
         console.log()
         console.log(pc.dim('  Fix these links to ensure your documentation works correctly.'))
         console.log(pc.dim('  ') + pc.yellow('Note:') + pc.dim(' Broken links will cause build errors.'))
-        console.log(pc.dim('  Run ') + pc.cyan('nlddoc check-links') + pc.dim(' for the full report.'))
+        console.log(pc.dim('  Run ') + pc.cyan('fastdocs check-links') + pc.dim(' for the full report.'))
         console.log()
         console.log(pc.dim('─'.repeat(60)))
         console.log()

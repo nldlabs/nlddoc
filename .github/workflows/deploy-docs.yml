@@ -35,7 +35,7 @@ jobs:
         run: npm install
       
       - name: Build documentation
-        run: node bin/nlddoc.js build ./docs ./dist
+        run: node bin/fastdocs.js build ./docs ./dist
       
       - name: Add CNAME file
         run: echo "docs.nldlab.cloud" > ./dist/CNAME

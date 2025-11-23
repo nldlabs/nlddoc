@@ -40,16 +40,16 @@ Vercel auto-detects most settings. To customize, create `vercel.json`:
 
 ```json
 {
-  "buildCommand": "npx nlddoc build ./docs ./dist --clean",
+  "buildCommand": "npx fastdocs build ./docs ./dist --clean",
   "outputDirectory": "dist",
   "framework": null
 }
 ```
 
 Or use dashboard settings:
-- **Build Command:** `npx nlddoc build ./docs ./dist --clean`
+- **Build Command:** `npx fastdocs build ./docs ./dist --clean`
 - **Output Directory:** `dist`
-- **Install Command:** `npm install` (not needed for nlddoc)
+- **Install Command:** `npm install` (not needed for fastdocs)
 
 ### 3. Deploy
 
@@ -63,7 +63,7 @@ Complete configuration example:
 
 ```json
 {
-  "buildCommand": "npx nlddoc build ./docs ./dist --clean",
+  "buildCommand": "npx fastdocs build ./docs ./dist --clean",
   "outputDirectory": "dist",
   "framework": null,
   "headers": [
@@ -106,7 +106,7 @@ In Vercel dashboard:
 For custom domain, use root base:
 
 ```bash
-npx nlddoc build ./docs ./dist --base /
+npx fastdocs build ./docs ./dist --base /
 ```
 
 ## Branch Deployments
@@ -157,7 +157,7 @@ Fix in `vercel.json`:
 
 ```json
 {
-  "buildCommand": "npx nlddoc build ./docs ./dist --clean",
+  "buildCommand": "npx fastdocs build ./docs ./dist --clean",
   "outputDirectory": "dist"
 }
 ```
@@ -168,7 +168,7 @@ Ensure your build completed successfully:
 
 ```bash
 # Test locally
-npx nlddoc build ./docs ./dist
+npx fastdocs build ./docs ./dist
 cd dist
 npx serve
 ```
@@ -179,7 +179,7 @@ Check base URL in build command:
 
 ```json
 {
-  "buildCommand": "npx nlddoc build ./docs ./dist --base /"
+  "buildCommand": "npx fastdocs build ./docs ./dist --base /"
 }
 ```
 
@@ -211,7 +211,7 @@ For monorepo projects:
 
 ```json
 {
-  "buildCommand": "cd docs && npx nlddoc build . ./dist",
+  "buildCommand": "cd docs && npx fastdocs build . ./dist",
   "outputDirectory": "docs/dist"
 }
 ```
@@ -253,7 +253,7 @@ Minimal setup:
 
 ```json
 {
-  "buildCommand": "npx nlddoc build ./docs ./dist --clean",
+  "buildCommand": "npx fastdocs build ./docs ./dist --clean",
   "outputDirectory": "dist"
 }
 ```
@@ -262,7 +262,7 @@ Advanced setup:
 
 ```json
 {
-  "buildCommand": "npx nlddoc build ./docs ./dist --clean",
+  "buildCommand": "npx fastdocs build ./docs ./dist --clean",
   "outputDirectory": "dist",
   "framework": null,
   "headers": [

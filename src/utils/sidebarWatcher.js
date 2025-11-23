@@ -79,7 +79,7 @@ export default generateVitePressConfig(userConfig, docsPath, true)
   
   // Watch for config and markdown changes (frontmatter affects sidebar)
   watcher.on('change', (path) => {
-    if (path.endsWith('.nlddoc') || path.endsWith('.md')) {
+    if (path.endsWith('.fastdocs') || path.endsWith('.md')) {
       regenerateConfig('changed', path)
     }
   })

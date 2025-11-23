@@ -5,6 +5,6 @@ order: 1
 
 # Overview
 
-New to nlddoc? Start here.
+New to FastDocs? Start here.
 
 <SubPages />

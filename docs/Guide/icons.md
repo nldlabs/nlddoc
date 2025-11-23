@@ -5,7 +5,7 @@ order: 6
 
 # Using Icons for Logo and Favicon
 
-nlddoc supports both image files and [Lucide icons](https://lucide.dev) for your site's logo and favicon. Icons provide a lightweight, scalable alternative to image files.
+fastdocs supports both image files and [Lucide icons](https://lucide.dev) for your site's logo and favicon. Icons provide a lightweight, scalable alternative to image files.
 
 ## Quick Start with Icons
 

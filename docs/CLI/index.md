@@ -5,7 +5,7 @@ order: 2
 
 # Commands
 
-nlddoc provides four simple commands for working with your documentation.
+fastdocs provides four simple commands for working with your documentation.
 
 ## Commands Overview
 
@@ -18,16 +18,16 @@ nlddoc provides four simple commands for working with your documentation.
 
 ```bash
 # Create config file
-nlddoc init [path]
+fastdocs init [path]
 
 # Start dev server
-nlddoc serve [path] [options]
+fastdocs serve [path] [options]
 
 # Check for broken links
-nlddoc check-links [path]
+fastdocs check-links [path]
 
 # Build static site
-nlddoc build [input] [output] [options]
+fastdocs build [input] [output] [options]
 ```
 
 ## Detailed Documentation

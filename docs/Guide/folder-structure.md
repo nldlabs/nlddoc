@@ -5,7 +5,7 @@ order: 2
 
 # How to Organize Your Files
 
-nlddoc automatically creates a menu from your folders and files. Here's how it works.
+fastdocs automatically creates a menu from your folders and files. Here's how it works.
 
 ## The Basics
 

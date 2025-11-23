@@ -1,16 +1,16 @@
 ---
-title: nlddoc serve
+title: fastdocs serve
 order: 1
 ---
 
-# nlddoc serve
+# fastdocs serve
 
 Start a local development server to view your documentation with hot reload.
 
 ## Usage
 
 ```bash
-nlddoc serve [path] [options]
+fastdocs serve [path] [options]
 ```
 
 ## Arguments
@@ -50,7 +50,7 @@ Don't open browser automatically.
 ### Serve Current Directory
 
 ```bash
-nlddoc serve
+fastdocs serve
 ```
 
 Serves docs from current directory on `http://localhost:5173`.
@@ -58,7 +58,7 @@ Serves docs from current directory on `http://localhost:5173`.
 ### Serve Specific Directory
 
 ```bash
-nlddoc serve ./docs
+fastdocs serve ./docs
 ```
 
 Serves docs from `./docs` directory.
@@ -66,7 +66,7 @@ Serves docs from `./docs` directory.
 ### Custom Port
 
 ```bash
-nlddoc serve --port 3000
+fastdocs serve --port 3000
 ```
 
 Runs server on port 3000.
@@ -74,7 +74,7 @@ Runs server on port 3000.
 ### Allow Network Access
 
 ```bash
-nlddoc serve --host
+fastdocs serve --host
 ```
 
 Makes server accessible from other devices on your network.
@@ -82,15 +82,15 @@ Makes server accessible from other devices on your network.
 ### Combine Options
 
 ```bash
-nlddoc serve ./docs --port 8080 --host
+fastdocs serve ./docs --port 8080 --host
 ```
 
 ## How It Works
 
-When you run `serve`, nlddoc:
+When you run `serve`, fastdocs:
 
 1. **Validates** the docs directory exists and contains `.md` files
-2. **Loads** configuration from `.nlddoc` (if it exists)
+2. **Loads** configuration from `.fastdocs` (if it exists)
 3. **Creates** a temporary VitePress project in system temp directory
 4. **Installs** dependencies (vitepress, etc.)
 5. **Starts** VitePress dev server with hot reload
@@ -101,7 +101,7 @@ Your docs directory stays clean - no `node_modules`, no build artifacts.
 ## Output
 
 ```
-📙 nlddoc
+❄️  Fastdocs
 ────────────────────────────────────────────────────────────
 ● Loading /path/to/docs
 ────────────────────────────────────────────────────────────
@@ -115,7 +115,7 @@ Your docs directory stays clean - no `node_modules`, no build artifacts.
   Press Ctrl+C to stop
 ────────────────────────────────────────────────────────────
   Tip: Generate static site for deployment:
-  $ nlddoc build [docs-path] [output-path]
+  $ fastdocs build [docs-path] [output-path]
 
   Powered by VitePress - advanced Markdown support
   https://vitepress.dev/guide/markdown
@@ -140,7 +140,7 @@ If broken links are found, you'll see:
 ────────────────────────────────────────────────────────────
   Fix these links to ensure your documentation works correctly.
   Note: Broken links will cause build errors.
-  Run nlddoc check-links for the full report.
+  Run fastdocs check-links for the full report.
 ────────────────────────────────────────────────────────────
 ```
 
@@ -157,7 +157,7 @@ Changes to your markdown files are reflected instantly:
 
 ## Cleanup
 
-Press `Ctrl+C` to stop the server. nlddoc automatically:
+Press `Ctrl+C` to stop the server. fastdocs automatically:
 - Stops the VitePress dev server
 - Cleans up the temporary project directory
 
@@ -168,7 +168,7 @@ Press `Ctrl+C` to stop the server. nlddoc automatically:
 If port 5173 is busy:
 
 ```bash
-nlddoc serve --port 3000
+fastdocs serve --port 3000
 ```
 
 ### No Markdown Files
@@ -179,8 +179,8 @@ If you see "No markdown files found":
 
 ### Config Parse Error
 
-If `.nlddoc` has syntax errors:
-- nlddoc shows a warning
+If `.fastdocs` has syntax errors:
+- fastdocs shows a warning
 - Falls back to default configuration
 - Server continues running
 
@@ -197,7 +197,7 @@ All changes reflect instantly.
 
 ### Preview Configuration
 
-Edit `.nlddoc` while the server is running:
+Edit `.fastdocs` while the server is running:
 - Some changes require restart
 - File structure changes update automatically
 
@@ -206,14 +206,14 @@ Edit `.nlddoc` while the server is running:
 Use `--host` to preview on mobile devices:
 
 ```bash
-nlddoc serve --host
+fastdocs serve --host
 ```
 
 Then open the Network URL on your phone/tablet.
 
 ## Related
 
-- [nlddoc check-links](./check-links.md)
-- [nlddoc build](./build.md)
+- [fastdocs check-links](./check-links.md)
+- [fastdocs build](./build.md)
 - [Configuration](../Guide/configuration.md)
 - [Folder Structure](../Guide/folder-structure.md)

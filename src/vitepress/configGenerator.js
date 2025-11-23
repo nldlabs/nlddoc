@@ -86,7 +86,7 @@ function generateLucideFaviconDataUri(iconName, color = '#3b82f6') {
 
 /**
  * Generate VitePress configuration from user config and docs path
- * @param {Object} userConfig - User configuration from .nlddoc file
+ * @param {Object} userConfig - User configuration from .fastdocs file
  * @param {string} docsPath - Absolute path to documentation directory
  * @param {boolean} useSrcDir - Whether to use srcDir (true for serve, false for build)
  * @returns {Object} VitePress configuration object
@@ -103,7 +103,7 @@ export function generateVitePressConfig(userConfig, docsPath, useSrcDir = true) 
       // Don't pass logo to VitePress - we handle it in our custom Logo component
       // logo: userConfig.logo,
       // Pass logo config for our custom component
-      nlddocLogo: userConfig.logo,
+      fastdocsLogo: userConfig.logo,
       nav: [
         { text: 'Docs', link: '/' }
       ],
