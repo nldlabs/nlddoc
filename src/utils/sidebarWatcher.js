@@ -34,13 +34,22 @@ export function watchSidebarChanges(docsPath, tempDir, onRestart) {
   })
   
   let restartTimeout
+  let isRegenerating = false
   
   const regenerateConfig = (event, path) => {
+    // Prevent concurrent regenerations
+    if (isRegenerating) {
+      console.log(pc.dim(`[watcher] Skipping ${event} - ${path} (regeneration in progress)`))
+      return
+    }
+    
     console.log(pc.cyan(`[watcher] Detected: ${event} - ${path}`))
     
     // Debounce to handle multiple rapid changes
     clearTimeout(restartTimeout)
     restartTimeout = setTimeout(() => {
+      isRegenerating = true
+      
       console.log(pc.dim(`\n  File ${event}: ${path}`))
       console.log(pc.dim('  Regenerating sidebar...\n'))
       
@@ -63,6 +72,11 @@ export default generateVitePressConfig(userConfig, docsPath, true)
       
       // Trigger restart
       onRestart()
+      
+      // Reset flag after a delay to allow restart to complete
+      setTimeout(() => {
+        isRegenerating = false
+      }, 1000)
     }, 300) // Wait 300ms to batch changes
   }
   
@@ -72,9 +86,9 @@ export default generateVitePressConfig(userConfig, docsPath, true)
   watcher.on('addDir', (path) => regenerateConfig('added directory', path))
   watcher.on('unlinkDir', (path) => regenerateConfig('deleted directory', path))
   
-  // Watch for config changes
+  // Watch for config and markdown changes (frontmatter affects sidebar)
   watcher.on('change', (path) => {
-    if (path === '.nlddoc') {
+    if (path.endsWith('.nlddoc') || path.endsWith('.md')) {
       regenerateConfig('changed', path)
     }
   })

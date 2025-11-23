@@ -36,24 +36,60 @@ export function generateSidebar(dir, basePath = '') {
     const relativePath = basePath ? `${basePath}/${file}` : file
     
     if (stat.isDirectory()) {
+      // Check if directory has an index.md and read its frontmatter
+      let order = Infinity
+      let title = file
+      try {
+        const indexPath = join(fullPath, 'index.md')
+        const content = readFileSync(indexPath, 'utf8')
+        const { data } = matter(content)
+        order = data.order ?? Infinity
+        title = data.title ?? file
+      } catch (err) {
+        // No index.md or error reading it, use defaults
+      }
+      
       return {
         type: 'dir',
         name: file,
+        title,
         fullPath,
         relativePath,
-        order: Infinity // Dirs go last by default
+        order
       }
     } else if (file.endsWith('.md') && file !== 'index.md') {
-      // Read frontmatter for order
+      // Read frontmatter for order and title
       let order = Infinity
-      let title = parse(file).name
+      let title = null
       try {
         const content = readFileSync(fullPath, 'utf8')
         const { data } = matter(content)
         order = data.order ?? Infinity
-        title = data.title ?? title
+        title = data.title
+        
+        // Debug logging
+        if (file === 'getting-started.md') {
+          console.log('[DEBUG] getting-started.md frontmatter:', { order, title, data })
+        }
       } catch (err) {
         // Ignore errors, use defaults
+      }
+      
+      // If no title in frontmatter, convert filename to title
+      if (!title) {
+        title = parse(file).name
+          .split('-')
+          .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+          .join(' ')
+      }
+      
+      return {
+        type: 'file',
+        name: file,
+        title,
+        fullPath,
+        relativePath,
+        order
       }
       
       return {
@@ -83,7 +119,7 @@ export function generateSidebar(dir, basePath = '') {
         const hasIndex = readdirSync(entry.fullPath).includes('index.md')
         
         items.push({
-          text: entry.name,
+          text: entry.title,
           link: hasIndex ? `/${entry.relativePath}/` : undefined,
           collapsed: false,
           items: childItems
