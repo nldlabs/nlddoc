@@ -28,7 +28,7 @@
   "bugs": {
     "url": "https://github.com/nldlabs/fastdocs/issues"
   },
-  "homepage": "https://nldlabs.github.io/fastdocs/",
+  "homepage": "https://fastdocs.nldlabs.cloud/",
   "author": "",
   "license": "MIT",
   "dependencies": {
