@@ -1,6 +1,6 @@
 ---
-title: Getting Started
-order: 1
+title: Guides
+order: 3
 ---
 
 # Getting Started

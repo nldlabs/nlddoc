@@ -1,6 +1,6 @@
 ---
 title: FAQ
-order: 99
+order: 2
 ---
 
 # FAQ
@@ -11,7 +11,7 @@ Common questions about nlddoc.
 
 ### What is nlddoc?
 
-nlddoc (Nate Louis Dev Docs) is a zero-configuration tool for viewing and building markdown documentation. It wraps VitePress to provide an ultra-simple experience with no setup required.
+nlddoc is a zero-configuration tool for viewing and building markdown documentation. It wraps VitePress to provide an ultra-simple experience with no setup required.
 
 ### Why use nlddoc instead of VitePress directly?
 
