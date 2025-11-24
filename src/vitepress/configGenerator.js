@@ -99,6 +99,21 @@ export function generateVitePressConfig(userConfig, docsPath, useSrcDir = true) 
     description: userConfig.description,
     base: baseUrl,
     head: generateHeadConfig(userConfig, baseUrl),
+    markdown: {
+      config: (md) => {
+        // Custom Mermaid renderer that uses our wrapper component
+        const fence = md.renderer.rules.fence.bind(md.renderer.rules)
+        md.renderer.rules.fence = (tokens, idx, options, env, slf) => {
+          const token = tokens[idx]
+          if (token.info.trim() === 'mermaid') {
+            const code = encodeURIComponent(token.content)
+            const id = `mermaid-${idx}`
+            return `<MermaidWrapper :code="'${code}'" id="${id}" />`
+          }
+          return fence(tokens, idx, options, env, slf)
+        }
+      }
+    },
     themeConfig: {
       // Don't pass logo to VitePress - we handle it in our custom Logo component
       // logo: userConfig.logo,

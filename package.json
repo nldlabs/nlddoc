@@ -22,7 +22,7 @@
     "zero-config",
     "nldlabs",
     "nldlabs.cloud",
-    "fastdocs", 
+    "fastdocs",
     "docs",
     "ai-docs",
     "ai",
@@ -43,6 +43,7 @@
     "commander": "^12.0.0",
     "gray-matter": "^4.0.3",
     "lucide-vue-next": "^0.468.0",
+    "mermaid": "^11.4.0",
     "vitepress": "^1.6.4"
   },
   "engines": {

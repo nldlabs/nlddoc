@@ -1,0 +1,49 @@
+/* Hide Mermaid error icons and text that appear in broken diagrams */
+#app .mermaid .error-icon,
+#app .mermaid .error-text,
+div[id^="dmermaid"] .error-icon,
+div[id^="dmermaid"] .error-text,
+svg[id^="mermaid"] .error-icon,
+svg[id^="mermaid"] .error-text {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+/* Hide the entire SVG if it only contains error elements */
+#app .mermaid svg[aria-roledescription="error"],
+div[id^="dmermaid"] svg[aria-roledescription="error"],
+svg[id^="mermaid"][aria-roledescription="error"] {
+  display: none !important;
+}
+
+/* Add a nice error message box in place of the broken diagram */
+.mermaid:has(svg[aria-roledescription="error"])::before,
+div[id^="dmermaid"]:has(svg[aria-roledescription="error"])::before {
+  content: "⚠️ Mermaid diagram error - check console for details";
+  display: block !important;
+  background-color: #fef3cd;
+  border: 1px solid #f0ad4e;
+  border-radius: 8px;
+  padding: 12px 16px;
+  color: #8a6d3b;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 14px;
+  margin: 1em 0;
+}
+
+.dark .mermaid:has(svg[aria-roledescription="error"])::before,
+.dark div[id^="dmermaid"]:has(svg[aria-roledescription="error"])::before {
+  background-color: #3e3020;
+  border-color: #8a6d3b;
+  color: #f0ad4e;
+}
+
+/* Ensure proper spacing for mermaid containers */
+.mermaid,
+div[id^="dmermaid"] {
+  margin: 1em 0;
+}
+
+
+
